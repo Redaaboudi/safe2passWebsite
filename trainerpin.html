@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Confirmation</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4; /* Light background for the body */
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #87CEEB; /* Purplish dark blue for the card */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #ffd700; /* White text color for better contrast */
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-field {
+            padding: 15px;
+            width: 50px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border 0.3s ease;
+            font-size: 16px;
+            text-align: center;
+            color: #ffd700; /* Dark color for input text */
+        }
+
+        .input-field:focus {
+            border-color: #dc143c; /* Red border on focus */
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Enter your trainer pin code</h2>
+        <div class="input-container">
+            <input type="text" class="input-field" maxlength="1" oninput="moveToNext(this)">
+            <input type="text" class="input-field" maxlength="1" oninput="moveToNext(this)">
+            <input type="text" class="input-field" maxlength="1" oninput="moveToNext(this)">
+            <input type="text" class="input-field" maxlength="1" oninput="moveToNext(this)">
+        </div>
+    </div>
+
+    <script>
+        function moveToNext(current) {
+            // Set the static OTP value
+            const staticOTP = "0000";
+            const inputs = document.querySelectorAll('.input-field');
+            const index = Array.from(inputs).indexOf(current);
+            // Fill the current input with the static value
+            current.value = staticOTP[index];
+
+            // Move to the next input field
+            if (index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            } else {
+                // Check if the OTP is correct
+                if (Array.from(inputs).map(input => input.value).join('') === staticOTP) {
+                    // Redirect to the URL if OTP is correct
+                    window.location.href = "https://letsgodriving.onelink.me/WmNF/c43lirmh";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
